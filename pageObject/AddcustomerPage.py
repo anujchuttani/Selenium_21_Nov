@@ -10,9 +10,10 @@ class AddCustomer:
     btnAddnew_xpath = "/html[1]/body[1]/div[3]/div[1]/form[1]/div[1]/div[1]/a[1]"
     txtEmail_xpath = "//input[@id='Email']"
     txtPassword_xpath = "//input[@id='Password']"
-    txtcustomerRoles_xpath = "//body/div[3]/div[1]/form[1]/section[1]/div[1]/div[1]/nop-cards[1]/nop-card[1]/div[1]/div[2]/div[10]/div[2]/div[1]/div[1]/div[1]/div[1]"
-    lstitemAdministrators_xpath = "//body/div[3]/div[1]/form[1]/section[1]/div[1]/div[1]/nop-cards[1]/nop-card[1]/div[1]/div[2]/div[10]/div[2]/div[1]/div[1]/div[1]/div[1]/ul[1]/li[1]/span[2]"
-    lstitemRegistered_xpath = "//body/div[3]/div[1]/form[1]/section[1]/div[1]/div[1]/nop-cards[1]/nop-card[1]/div[1]/div[2]/div[10]/div[2]/div[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/span[2]"
+    txtcustomerRoles_xpath = "//span[@title='delete']"
+    lstitemAdministrators_xpath = "//li[normalize-space()='Administrators']"
+
+    lstitemRegistered_xpath = "//li[normalize-space()='Registered']"
     lstitemGuests_xpath = "//li[contains(text(),'Guests')]"
     lstitemVendors_xpath = "//body/div[3]/div[1]/form[1]/section[1]/div[1]/div[1]/nop-cards[1]/nop-card[1]/div[1]/div[2]/div[10]/div[2]/div[1]/div[1]/div[1]/div[1]/ul[1]/li[4]/span[2]"
     drpmgrOfVendor_xpath = "//select[@id='VendorId']"
@@ -54,7 +55,7 @@ class AddCustomer:
         elif role=='Guests':
             # Here user can be Registered( or) Guest, only one
             time.sleep(3)
-            self.driver.find_element(By.XPATH, "//body/div[3]/div[1]/form[1]/section[1]/div[1]/div[1]/nop-cards[1]/nop-card[1]/div[1]/div[2]/div[10]/div[2]/div[1]/div[1]/div[1]/div[1]/ul[1]/li[1]/span[2]").click()
+            self.driver.find_element(By.XPATH, "//span[@title='delete']").click()
             self.listitem = self.driver.find_element(By.XPATH, self.lstitemGuests_xpath)
         elif role=='Registered':
             self.listitem = self.driver.find_element(By.XPATH, self.lstitemRegistered_xpath)
