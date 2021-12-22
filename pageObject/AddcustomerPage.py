@@ -46,7 +46,7 @@ class AddCustomer:
         self.driver.find_element(By.XPATH, self.txtPassword_xpath).send_keys(password)
 
     def setCustomerRoles(self, role):
-        self.driver.find_element(By.XPATH, self.txtcustomerRoles_xpath).click()
+        #self.driver.find_element(By.XPATH, self.txtcustomerRoles_xpath).click()
         time.sleep(3)
         if role == 'Registered':
             self.listitem = self.driver.find_element(By.XPATH, self.lstitemRegistered_xpath)
@@ -55,7 +55,8 @@ class AddCustomer:
         elif role=='Guests':
             # Here user can be Registered( or) Guest, only one
             time.sleep(3)
-            self.driver.find_element(By.XPATH, "//span[@title='delete']").click()
+            if self.driver.find_element(By.XPATH, "//span[@title='delete']"):
+                self.driver.find_element(By.XPATH, "//span[@title='delete']").click()
             self.listitem = self.driver.find_element(By.XPATH, self.lstitemGuests_xpath)
         elif role=='Registered':
             self.listitem = self.driver.find_element(By.XPATH, self.lstitemRegistered_xpath)
@@ -63,6 +64,7 @@ class AddCustomer:
             self.listitem = self.driver.find_element(By.XPATH, self.lstitemVendors_xpath)
         else:
             self.listitem = self.driver.find_element(By.XPATH, self.lstitemGuests_xpath)
+
         time.sleep(3)
         #self.listitem.click()
         self.driver.execute_script("arguments[0].click();", self.listitem)
